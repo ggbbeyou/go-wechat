@@ -13,6 +13,7 @@ const DeaultTimeout = 10 * time.Second
 type Request interface {
 	Get(reqUrl string, params map[string]string) (*http.Response, error)
 	Post(reqUrl, contentType string, body io.Reader) (*http.Response, error)
+	PostWithHeaders(reqUrl string, body io.Reader, headers map[string]string) (*http.Response, error)
 }
 
 // 先做一个简单内置的实现
@@ -44,6 +45,10 @@ func (r *request) Post(reqUrl, contentType string, body io.Reader) (*http.Respon
 	headers := map[string]string{
 		"Content-Type": contentType,
 	}
+	return r.do(http.MethodPost, reqUrl, body, headers)
+}
+
+func (r *request) PostWithHeaders(reqUrl string, body io.Reader, headers map[string]string) (*http.Response, error) {
 	return r.do(http.MethodPost, reqUrl, body, headers)
 }
 

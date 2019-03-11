@@ -34,9 +34,10 @@ type Wechat struct {
 	Key         string
 	AccessToken string //如果需要用到accesstoken，需要提前调用获取token的接口，或者提前有token直接设置进来
 	SignType    string
+	Auth        string //小程序接口需要授权
 }
 
-func NewWechat(appId, appSecret, mchId, notifyUrl, key string) *Wechat {
+func NewWechat(appId, appSecret, mchId, notifyUrl, key, auth string) *Wechat {
 	return &Wechat{
 		AppId:     appId,
 		AppSecret: appSecret,
@@ -44,6 +45,7 @@ func NewWechat(appId, appSecret, mchId, notifyUrl, key string) *Wechat {
 		NotifyUrl: notifyUrl,
 		Key:       key,
 		SignType:  SignTypeMD5,
+		Auth:      auth,
 		Request:   NewRequest(5 * time.Second),
 	}
 }
@@ -236,7 +238,11 @@ func (w *Wechat) doPostCall(url string, req interface{}, resp interface{}) error
 		return err
 	}
 	reqUrl := url + "?access_token=" + w.AccessToken
-	result, err := w.Post(reqUrl, "application/json", bytes.NewReader(reqBytes))
+	headers := map[string]string{
+		"Content-Type":  "application/json",
+		"Authorization": w.Auth,
+	}
+	result, err := w.PostWithHeaders(reqUrl, bytes.NewReader(reqBytes), headers)
 	if err != nil {
 		return err
 	}

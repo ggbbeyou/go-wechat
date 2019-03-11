@@ -51,11 +51,14 @@ func init() {
     appid := ""
     appsecret := ""
     notifyUrl := ""
-    wechat = NewWechat(appid, appsecret, mchid, notifyUrl, apikey)
+    auth := ""
+    wechat = NewWechat(appid, appsecret, mchid, notifyUrl, apikey, auth)
 }
 ```
 
 先把微信需要的一些数据准备好，然后生成一个对象即可，如果这个参数调用的接口不需要的话，是可以不传的
+
+`auth` 这个参数是在调用小程序功能接口的时候需要添加在`header`中
 
 ### 统一下单
 
