@@ -179,14 +179,14 @@ type NotifyResp struct {
 
 /////////////////////小程序相关//////////////////
 type TokenResp struct {
-	ErrCode     string `json:"errcode"`
+	ErrCode     int64  `json:"errcode"`
 	ErrMsg      string `json:"errmsg"`
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int64  `json:"expires_in"`
 }
 
 type Code2SessionResp struct {
-	ErrCode    string `json:"errcode"`
+	ErrCode    int64  `json:"errcode"`
 	ErrMsg     string `json:"errmsg"`
 	OpenId     string `json:"openid"`
 	SessionKey string `json:"session_key"`
@@ -203,7 +203,7 @@ type SendTemplateReq struct {
 }
 
 type SendTemplateResp struct {
-	ErrCode string `json:"errcode"`
+	ErrCode int64  `json:"errcode"`
 	ErrMsg  string `json:"errmsg"`
 }
 
@@ -217,6 +217,6 @@ type WXACodeUnlimitReq struct {
 }
 
 type WXACodeUnlimitResp struct {
-	ErrCode string `json:"errcode"`
+	ErrCode int64  `json:"errcode"`
 	ErrMsg  string `json:"errmsg"`
 }
