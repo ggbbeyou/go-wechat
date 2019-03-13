@@ -104,7 +104,7 @@ func (w *Wechat) SendUnifiedOrder(order *UnifiedOrder) (*UnifiedOrderResp, error
 
 //查询订单
 func (w *Wechat) QueryOrder(orderNo, transactionId string) (*QueryOrderResp, error) {
-	req := QueryOrderReq{
+	req := queryOrderReq{
 		AppId:         w.AppId,
 		MchId:         w.MchId,
 		NonceStr:      RandStringBytesMaskImprSrc(16),
@@ -139,7 +139,7 @@ func (w *Wechat) QueryOrder(orderNo, transactionId string) (*QueryOrderResp, err
 // 关闭订单
 // 以下情况需要调用关单接口：商户订单支付失败需要生成新单号重新发起支付，要对原订单号调用关单，避免重复支付；系统下单后，用户支付超时，系统退出不再受理，避免用户继续，请调用关单接口。
 func (w *Wechat) CloseOrder(orderNo string) (*CloseOrderResp, error) {
-	req := CloseOrderReq{
+	req := closeOrderReq{
 		AppId:      w.AppId,
 		MchId:      w.MchId,
 		NonceStr:   RandStringBytesMaskImprSrc(16),

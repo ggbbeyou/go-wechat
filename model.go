@@ -64,7 +64,7 @@ type UnifiedOrderResp struct {
 	CodeUrl    string   `xml:"code_url" json:"code_url"`
 }
 
-type QueryOrderReq struct {
+type queryOrderReq struct {
 	XMLName       xml.Name `xml:"xml" json:"-"`
 	AppId         string   `json:"appid" xml:"appid"`
 	MchId         string   `json:"mch_id" xml:"mch_id"`
@@ -107,7 +107,7 @@ type QueryOrderResp struct {
 	TradeStateDesc     string   `xml:"trade_state_desc" json:"trade_state_desc"`
 }
 
-type CloseOrderReq struct {
+type closeOrderReq struct {
 	XMLName    xml.Name `xml:"xml" json:"-"`
 	AppId      string   `json:"appid" xml:"appid"`
 	MchId      string   `json:"mch_id" xml:"mch_id"`
