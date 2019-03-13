@@ -185,7 +185,7 @@ type TokenResp struct {
 	ExpiresIn   int64  `json:"expires_in"`
 }
 
-type Session2CodeResp struct {
+type Code2SessionResp struct {
 	ErrCode    string `json:"errcode"`
 	ErrMsg     string `json:"errmsg"`
 	OpenId     string `json:"openid"`

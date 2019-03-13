@@ -193,7 +193,7 @@ func (w *Wechat) QueryAccessToken() (*TokenResp, error) {
 }
 
 //小程序用`code`换`session`的接口（可以直接用小程序的云开发功能获取更方便）
-func (w *Wechat) QuerySessionByCode(jsCode string) (*Session2CodeResp, error) {
+func (w *Wechat) QuerySessionByCode(jsCode string) (*Code2SessionResp, error) {
 	params := map[string]string{
 		"appid":      w.AppId,
 		"secret":     w.AppSecret,
@@ -204,7 +204,7 @@ func (w *Wechat) QuerySessionByCode(jsCode string) (*Session2CodeResp, error) {
 	if err != nil {
 		return nil, err
 	}
-	var resp Session2CodeResp
+	var resp Code2SessionResp
 	if err := decodeResponseJson(result, &resp); err != nil {
 		return nil, err
 	}
