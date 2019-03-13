@@ -213,7 +213,7 @@ func (w *Wechat) QuerySessionByCode(jsCode string) (*Code2SessionResp, error) {
 
 // 小程序发送模板消息
 // 需要注意，如果access_token过期了，返回的错误码是4001，需要自行处理，例如重发之类的
-func (w *Wechat) SendTemplateMessage(req SendTemplateReq) (*SendTemplateResp, error) {
+func (w *Wechat) SendTemplateMessage(req *SendTemplateReq) (*SendTemplateResp, error) {
 	resp := new(SendTemplateResp)
 	if err := w.doPostCall(URLSendTemplateMessage, req, resp); err != nil {
 		return nil, err
@@ -224,7 +224,7 @@ func (w *Wechat) SendTemplateMessage(req SendTemplateReq) (*SendTemplateResp, er
 // 获取小程序码，适用于需要的码数量极多的业务场景。
 // 通过该接口生成的小程序码，永久有效，数量暂无限制
 // 文档：https://developers.weixin.qq.com/miniprogram/dev/api/getWXACodeUnlimit.html?search-key=getwxacodeunlimit
-func (w *Wechat) GetWXACodeUnlimit(req WXACodeUnlimitReq) (*WXACodeUnlimitResp, error) {
+func (w *Wechat) GetWXACodeUnlimit(req *WXACodeUnlimitReq) (*WXACodeUnlimitResp, error) {
 	resp := new(WXACodeUnlimitResp)
 	if err := w.doPostCall(URLGetWXACodeUnlimit, req, resp); err != nil {
 		return nil, err
